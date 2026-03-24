@@ -30,6 +30,26 @@ This project builds a real-time bird detection system that combines SIFT feature
   <line x1="622" y1="95" x2="656" y2="95" stroke="#1d1a16" stroke-width="2"/>
 </svg>
 
+<svg width="920" height="220" viewBox="0 0 920 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sentinel visualization">
+  <rect width="920" height="220" rx="18" fill="#0b0b0c"/>
+  <text x="32" y="44" font-size="16" font-family="Segoe UI, Arial" fill="#f7f7f2">Detector Sentinel Stack</text>
+  <g transform="translate(60, 70)">
+    <rect x="0" y="0" width="200" height="120" rx="16" fill="#151515" stroke="#2dd4bf" stroke-width="1.5"/>
+    <rect x="30" y="20" width="140" height="70" rx="10" fill="#050505"/>
+    <rect x="80" y="52" width="40" height="6" fill="#2dd4bf"/>
+  </g>
+  <g transform="translate(360, 60)">
+    <rect x="0" y="0" width="220" height="140" rx="18" fill="#1a1a1a" stroke="#f59e0b" stroke-width="1.5"/>
+    <rect x="40" y="28" width="140" height="80" rx="12" fill="#0a0a0a"/>
+    <rect x="90" y="64" width="40" height="6" fill="#f59e0b"/>
+  </g>
+  <g transform="translate(660, 70)">
+    <rect x="0" y="0" width="200" height="120" rx="16" fill="#191218" stroke="#f472b6" stroke-width="1.5"/>
+    <rect x="30" y="20" width="140" height="70" rx="10" fill="#050505"/>
+    <rect x="80" y="52" width="40" height="6" fill="#f472b6"/>
+  </g>
+</svg>
+
 <svg width="920" height="200" viewBox="0 0 920 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Detection density to actuator response">
   <rect width="920" height="200" rx="18" fill="#f3efe7"/>
   <text x="32" y="44" font-size="16" font-family="Segoe UI, Arial" fill="#1d1a16">Detection Density → Ultrasonic Response</text>
