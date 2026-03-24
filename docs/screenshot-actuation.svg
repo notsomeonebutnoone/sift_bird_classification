@@ -1,0 +1,28 @@
+<svg width="900" height="320" viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Density to actuation">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f7f0e6"/>
+      <stop offset="100%" stop-color="#ecd9c7"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="320" rx="22" fill="url(#bg3)"/>
+  <text x="32" y="44" font-size="18" font-family="Segoe UI, Arial" fill="#1d1a16">Density → Ultrasonic Response</text>
+
+  <rect x="32" y="84" width="256" height="180" rx="16" fill="#ffffff" stroke="#1d1a16" stroke-width="1.5"/>
+  <text x="52" y="118" font-size="12" font-family="Segoe UI, Arial" fill="#6b5a4a">Low Density</text>
+  <rect x="52" y="150" width="200" height="12" rx="6" fill="#f1e4d6"/>
+  <rect x="52" y="150" width="60" height="12" rx="6" fill="#c76b3c"/>
+  <text x="52" y="188" font-size="11" font-family="Segoe UI, Arial" fill="#9c8a78">PWM 25%</text>
+
+  <rect x="322" y="84" width="256" height="180" rx="16" fill="#ffffff" stroke="#1d1a16" stroke-width="1.5"/>
+  <text x="342" y="118" font-size="12" font-family="Segoe UI, Arial" fill="#6b5a4a">Medium Density</text>
+  <rect x="342" y="150" width="200" height="12" rx="6" fill="#f1e4d6"/>
+  <rect x="342" y="150" width="120" height="12" rx="6" fill="#c76b3c"/>
+  <text x="342" y="188" font-size="11" font-family="Segoe UI, Arial" fill="#9c8a78">PWM 55%</text>
+
+  <rect x="612" y="84" width="256" height="180" rx="16" fill="#1d1a16"/>
+  <text x="632" y="118" font-size="12" font-family="Segoe UI, Arial" fill="#f2d7c6">High Density</text>
+  <rect x="632" y="150" width="200" height="12" rx="6" fill="#2d241b"/>
+  <rect x="632" y="150" width="170" height="12" rx="6" fill="#f59e0b"/>
+  <text x="632" y="188" font-size="11" font-family="Segoe UI, Arial" fill="#cbb7a5">PWM 85%</text>
+</svg>
