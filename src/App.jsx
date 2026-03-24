@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 const fallback = {
   title: "Avian SIFT Sentinel",
   subtitle:
-    "Real-time bird detection with SIFT feature matching and adaptive ultrasonic actuation.",
+    "Real-time bird detection using combined SIFT + HOG features with adaptive ultrasonic actuation.",
   highlights: [
-    "Developed a computer vision system using SIFT feature matching for real-time bird detection.",
+    "Developed a computer vision system using SIFT + HOG feature extraction for real-time bird detection.",
     "Dynamically controlled ultrasonic actuators based on detection density.",
     "Published a peer-reviewed conference research paper.",
   ],
@@ -13,12 +13,17 @@ const fallback = {
     {
       title: "System Overview",
       body:
-        "A lightweight vision pipeline extracts SIFT keypoints per frame, matches them against a reference library, and scores detection confidence in real time.",
+        "A lightweight vision pipeline extracts SIFT keypoints and HOG descriptors per frame, matches them against a labeled species library, and scores detection confidence in real time.",
     },
     {
       title: "Adaptive Actuation",
       body:
         "Detection density is converted into actuator duty cycles, enabling targeted ultrasonic responses that scale with activity rather than raw frame counts.",
+    },
+    {
+      title: "Dataset Matching",
+      body:
+        "Live frames are compared against a pre-existing dataset of bird species images to compute similarity scores and identify the most likely matches.",
     },
     {
       title: "Publication",
@@ -27,9 +32,9 @@ const fallback = {
     },
   ],
   metrics: [
-    { label: "Pipeline", value: "SIFT + BFMatcher" },
+    { label: "Pipeline", value: "SIFT + HOG" },
     { label: "Actuation", value: "Ultrasonic Array" },
-    { label: "Runtime", value: "Real-Time Stream" },
+    { label: "Dataset", value: "Species Library" },
     { label: "Output", value: "Conference Paper" },
   ],
 };

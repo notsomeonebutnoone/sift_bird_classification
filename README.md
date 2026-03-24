@@ -1,0 +1,76 @@
+# SIFT + HOG Bird Detection & Ultrasonic Actuation
+
+This project builds a real-time bird detection system that combines SIFT feature matching with HOG (Histogram of Oriented Gradients) descriptors. Live video frames are compared against a curated dataset of bird species images to identify likely matches, estimate detection density, and dynamically control an ultrasonic actuator array. The end-to-end system was validated in field conditions and published in a peer-reviewed conference paper.
+
+## Visual Summary (SVG)
+
+<svg width="920" height="190" viewBox="0 0 920 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pipeline overview">
+  <rect width="920" height="190" rx="18" fill="#f8f2e8"/>
+  <rect x="24" y="30" width="160" height="130" rx="14" fill="#fff6e8" stroke="#c76b3c" stroke-width="2"/>
+  <text x="44" y="78" font-size="16" font-family="Segoe UI, Arial" fill="#1d1a16">Video Feed</text>
+  <text x="44" y="104" font-size="12" font-family="Segoe UI, Arial" fill="#6b5a4a">Frames @ 30 FPS</text>
+
+  <rect x="218" y="30" width="180" height="130" rx="14" fill="#fff" stroke="#1d1a16" stroke-width="1.5"/>
+  <text x="238" y="70" font-size="14" font-family="Segoe UI, Arial" fill="#1d1a16">Feature Extractors</text>
+  <text x="238" y="96" font-size="12" font-family="Segoe UI, Arial" fill="#6b5a4a">SIFT Keypoints</text>
+  <text x="238" y="116" font-size="12" font-family="Segoe UI, Arial" fill="#6b5a4a">HOG Descriptors</text>
+
+  <rect x="432" y="30" width="190" height="130" rx="14" fill="#fff" stroke="#1d1a16" stroke-width="1.5"/>
+  <text x="452" y="70" font-size="14" font-family="Segoe UI, Arial" fill="#1d1a16">Dataset Matching</text>
+  <text x="452" y="96" font-size="12" font-family="Segoe UI, Arial" fill="#6b5a4a">Species Library</text>
+  <text x="452" y="116" font-size="12" font-family="Segoe UI, Arial" fill="#6b5a4a">Similarity Scores</text>
+
+  <rect x="656" y="30" width="240" height="130" rx="14" fill="#1d1a16"/>
+  <text x="676" y="70" font-size="14" font-family="Segoe UI, Arial" fill="#ffffff">Density → Actuation</text>
+  <text x="676" y="96" font-size="12" font-family="Segoe UI, Arial" fill="#f2d7c6">Duty Cycle Control</text>
+  <text x="676" y="116" font-size="12" font-family="Segoe UI, Arial" fill="#f2d7c6">Ultrasonic Array</text>
+
+  <line x1="184" y1="95" x2="218" y2="95" stroke="#1d1a16" stroke-width="2"/>
+  <line x1="398" y1="95" x2="432" y2="95" stroke="#1d1a16" stroke-width="2"/>
+  <line x1="622" y1="95" x2="656" y2="95" stroke="#1d1a16" stroke-width="2"/>
+</svg>
+
+<svg width="920" height="200" viewBox="0 0 920 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Detection density to actuator response">
+  <rect width="920" height="200" rx="18" fill="#f3efe7"/>
+  <text x="32" y="44" font-size="16" font-family="Segoe UI, Arial" fill="#1d1a16">Detection Density → Ultrasonic Response</text>
+  <rect x="32" y="70" width="280" height="100" rx="12" fill="#fff" stroke="#1d1a16" stroke-width="1.5"/>
+  <text x="52" y="102" font-size="12" font-family="Segoe UI, Arial" fill="#6b5a4a">Low Density</text>
+  <rect x="52" y="118" width="200" height="10" fill="#efe4d4"/>
+  <rect x="52" y="118" width="60" height="10" fill="#c76b3c"/>
+
+  <rect x="320" y="70" width="280" height="100" rx="12" fill="#fff" stroke="#1d1a16" stroke-width="1.5"/>
+  <text x="340" y="102" font-size="12" font-family="Segoe UI, Arial" fill="#6b5a4a">Medium Density</text>
+  <rect x="340" y="118" width="200" height="10" fill="#efe4d4"/>
+  <rect x="340" y="118" width="120" height="10" fill="#c76b3c"/>
+
+  <rect x="608" y="70" width="280" height="100" rx="12" fill="#fff" stroke="#1d1a16" stroke-width="1.5"/>
+  <text x="628" y="102" font-size="12" font-family="Segoe UI, Arial" fill="#6b5a4a">High Density</text>
+  <rect x="628" y="118" width="200" height="10" fill="#efe4d4"/>
+  <rect x="628" y="118" width="180" height="10" fill="#c76b3c"/>
+</svg>
+
+<svg width="920" height="190" viewBox="0 0 920 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dataset and species matching">
+  <rect width="920" height="190" rx="18" fill="#fff6e8"/>
+  <text x="32" y="44" font-size="16" font-family="Segoe UI, Arial" fill="#1d1a16">Species Image Dataset</text>
+  <rect x="32" y="70" width="130" height="90" rx="12" fill="#ffffff" stroke="#1d1a16" stroke-width="1.5"/>
+  <rect x="178" y="70" width="130" height="90" rx="12" fill="#ffffff" stroke="#1d1a16" stroke-width="1.5"/>
+  <rect x="324" y="70" width="130" height="90" rx="12" fill="#ffffff" stroke="#1d1a16" stroke-width="1.5"/>
+  <rect x="470" y="70" width="130" height="90" rx="12" fill="#ffffff" stroke="#1d1a16" stroke-width="1.5"/>
+  <text x="52" y="128" font-size="12" font-family="Segoe UI, Arial" fill="#6b5a4a">Sparrow</text>
+  <text x="198" y="128" font-size="12" font-family="Segoe UI, Arial" fill="#6b5a4a">Pigeon</text>
+  <text x="344" y="128" font-size="12" font-family="Segoe UI, Arial" fill="#6b5a4a">Myna</text>
+  <text x="490" y="128" font-size="12" font-family="Segoe UI, Arial" fill="#6b5a4a">Crow</text>
+  <rect x="640" y="70" width="248" height="90" rx="12" fill="#1d1a16"/>
+  <text x="660" y="110" font-size="12" font-family="Segoe UI, Arial" fill="#f2d7c6">Top Match: 0.92</text>
+  <text x="660" y="132" font-size="12" font-family="Segoe UI, Arial" fill="#f2d7c6">Species: Sparrow</text>
+</svg>
+
+## What the System Actually Does
+
+The detection pipeline fuses two complementary feature strategies:
+- SIFT (Scale-Invariant Feature Transform) captures distinctive keypoints so the system can recognize birds under changes in scale, angle, and lighting.
+- HOG (Histogram of Oriented Gradients) captures edge direction distributions, which strengthens shape-based discrimination when keypoints are sparse or motion blur is present.
+
+Each incoming frame is processed to extract SIFT and HOG descriptors, then compared against a pre-existing dataset of labeled bird species images. The matching step scores similarity across species and aggregates detections over time to produce a density estimate. That density drives an actuator controller that scales ultrasonic output intensity rather than issuing static on/off triggers, improving responsiveness while reducing energy waste and wear on the transducers.
+
+The project’s contributions include a combined SIFT + HOG matching strategy, a dataset-driven species comparison loop, and a density-aware actuation policy tuned for real-time deployment. The results and field evaluations were published in a peer-reviewed conference paper.
