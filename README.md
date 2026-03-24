@@ -85,6 +85,50 @@ This project builds a real-time bird detection system that combines SIFT feature
   <text x="660" y="132" font-size="12" font-family="Segoe UI, Arial" fill="#f2d7c6">Species: Sparrow</text>
 </svg>
 
+<svg width="920" height="220" viewBox="0 0 920 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SIFT and HOG fusion">
+  <rect width="920" height="220" rx="18" fill="#f8f2e8"/>
+  <text x="32" y="44" font-size="16" font-family="Segoe UI, Arial" fill="#1d1a16">SIFT + HOG Fusion</text>
+  <rect x="32" y="70" width="260" height="120" rx="14" fill="#ffffff" stroke="#1d1a16" stroke-width="1.5"/>
+  <text x="52" y="102" font-size="13" font-family="Segoe UI, Arial" fill="#6b5a4a">SIFT Keypoints</text>
+  <circle cx="84" cy="136" r="8" fill="#c76b3c"/>
+  <circle cx="120" cy="160" r="6" fill="#c76b3c"/>
+  <circle cx="170" cy="130" r="5" fill="#c76b3c"/>
+  <circle cx="210" cy="156" r="7" fill="#c76b3c"/>
+
+  <rect x="324" y="70" width="260" height="120" rx="14" fill="#ffffff" stroke="#1d1a16" stroke-width="1.5"/>
+  <text x="344" y="102" font-size="13" font-family="Segoe UI, Arial" fill="#6b5a4a">HOG Gradients</text>
+  <line x1="350" y1="128" x2="420" y2="168" stroke="#1d1a16" stroke-width="2"/>
+  <line x1="430" y1="128" x2="500" y2="168" stroke="#1d1a16" stroke-width="2"/>
+  <line x1="510" y1="128" x2="580" y2="168" stroke="#1d1a16" stroke-width="2"/>
+
+  <rect x="624" y="70" width="260" height="120" rx="14" fill="#1d1a16"/>
+  <text x="644" y="102" font-size="13" font-family="Segoe UI, Arial" fill="#f2d7c6">Fusion Vector</text>
+  <rect x="644" y="128" width="220" height="14" rx="7" fill="#2b2520"/>
+  <rect x="644" y="128" width="140" height="14" rx="7" fill="#c76b3c"/>
+  <rect x="644" y="148" width="220" height="10" rx="5" fill="#2b2520"/>
+  <rect x="644" y="148" width="180" height="10" rx="5" fill="#d7a483"/>
+
+  <line x1="292" y1="130" x2="324" y2="130" stroke="#1d1a16" stroke-width="2"/>
+  <line x1="584" y1="130" x2="624" y2="130" stroke="#1d1a16" stroke-width="2"/>
+</svg>
+
+<svg width="920" height="220" viewBox="0 0 920 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="End-to-end inference loop">
+  <rect width="920" height="220" rx="18" fill="#fff6e8"/>
+  <text x="32" y="44" font-size="16" font-family="Segoe UI, Arial" fill="#1d1a16">End-to-End Inference Loop</text>
+  <rect x="32" y="70" width="180" height="120" rx="14" fill="#ffffff" stroke="#1d1a16" stroke-width="1.5"/>
+  <text x="52" y="104" font-size="12" font-family="Segoe UI, Arial" fill="#6b5a4a">Frame Capture</text>
+  <rect x="234" y="70" width="180" height="120" rx="14" fill="#ffffff" stroke="#1d1a16" stroke-width="1.5"/>
+  <text x="254" y="104" font-size="12" font-family="Segoe UI, Arial" fill="#6b5a4a">Feature Fusion</text>
+  <rect x="436" y="70" width="180" height="120" rx="14" fill="#ffffff" stroke="#1d1a16" stroke-width="1.5"/>
+  <text x="456" y="104" font-size="12" font-family="Segoe UI, Arial" fill="#6b5a4a">Species Match</text>
+  <rect x="638" y="70" width="250" height="120" rx="14" fill="#1d1a16"/>
+  <text x="658" y="104" font-size="12" font-family="Segoe UI, Arial" fill="#f2d7c6">Density → PWM</text>
+  <text x="658" y="128" font-size="12" font-family="Segoe UI, Arial" fill="#f2d7c6">Ultrasonic Array</text>
+  <line x1="212" y1="130" x2="234" y2="130" stroke="#1d1a16" stroke-width="2"/>
+  <line x1="414" y1="130" x2="436" y2="130" stroke="#1d1a16" stroke-width="2"/>
+  <line x1="616" y1="130" x2="638" y2="130" stroke="#1d1a16" stroke-width="2"/>
+</svg>
+
 ## What the System Actually Does
 
 The detection pipeline fuses two complementary feature strategies:
